@@ -34,7 +34,6 @@ class Payload:
             for i in range(4):
                 write_value = (value >> (i*16)) % 0x10000
                 write_address = address + i*2
-		print(write_value,write_address)
                 self.__chunk_list.append(FmtChunkW(write_value, write_address))
         return
 
