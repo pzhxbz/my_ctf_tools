@@ -4,10 +4,11 @@ arch = 64
 
 
 class Payload:
-    def __init__(self, index):
+    def __init__(self, index,addon = ''):
         self.__index = index
         self.__payload = ''
         self.__chunk_list = []
+        self.__addon = addon
 
     def add_write_chunk(self, value, address, write_len=int(arch/8)):
         if write_len != 2 and write_len != 1 and write_len != 4 and write_len != 8:
@@ -58,7 +59,7 @@ class Payload:
             format_string += tmp_format_string
             address_string += tmp_address_string
             last_value = int(i)
-        return format_string.ljust(start_index * int(arch / 8), 'a') + address_string
+        return format_string.ljust(start_index * int(arch / 8), 'a') + self.__addon + address_string
 
 class FmtChunkW:
     def __init__(self, value, address, write_len=2):
